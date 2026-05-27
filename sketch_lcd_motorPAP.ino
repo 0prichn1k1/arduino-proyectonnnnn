@@ -68,6 +68,7 @@ void loop() {
     lcd.print(v);                                // Imprime el número de vuelta actual (1, 2, 3...)
     digitalWrite(pinBuzzer, 1);
     delay(dtLargo);
+    digitalWrite(pinBuzzer, 0);
     //tone(pinBuzzer, frecDer, duracionBeep);   // Emite un tono de 1000 Hz durante DUR_BEEP ms
 
     motor.step(pasosPorVuelta);               // Gira el motor una vuelta completa en sentido horario (positivo)
@@ -84,6 +85,7 @@ void loop() {
     lcd.print(v);                                // Imprime el número de vuelta actual
     digitalWrite(pinBuzzer, 1);
     delay(dtLargo);
+    digitalWrite(pinBuzzer, 0);
     //tone(pinBuzzer, frecIzq, duracionBeep); // Emite un tono de 500 Hz durante DUR_BEEP ms
 
     motor.step(-pasosPorVuelta);              // Gira el motor una vuelta completa en sentido antihorario (negativo)
