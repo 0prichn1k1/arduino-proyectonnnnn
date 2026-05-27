@@ -32,12 +32,13 @@ const int columnasLCD = 16;      // Cantidad de columnas del display lcd
 const int filasLCD = 2;       // Cantidad de filas del display lcd
 
 // Parámetros del buzzer
-const int frecDer   = 1000;    // Frecuencia en Hz del beep al girar hacia la derecha
+/*const int frecDer   = 1000;    // Frecuencia en Hz del beep al girar hacia la derecha
 const int frecIzq = 500;     // Frecuencia en Hz del beep al girar hacia la izquierda
-const int duracionBeep = 150;     // Duración de cada beep en milisegundos
+const int duracionBeep = 150;     // Duración de cada beep en milisegundos**/
 
 // Parámetros del ciclo general
-const int dt = 1000;       // Tiempo de espera (ms) entre un ciclo completo y el siguiente
+const int dtCorto = 150;
+const int dtLargo = 1000;       // Tiempo de espera (ms) entre un ciclo completo y el siguiente
 
 // Instanciación de objetos de las librerías
 LiquidCrystal lcd(pinRS, pinEN, pinD4, pinD5, pinD6, pinD7);
@@ -65,8 +66,9 @@ void loop() {
     lcd.setCursor(0, 1);                         // Mueve el cursor a columna 0, fila 1 (fila inferior)
     lcd.print("derecha: ");                       // Imprime la dirección y los dos puntos en fila 1
     lcd.print(v);                                // Imprime el número de vuelta actual (1, 2, 3...)
-
-    tone(pinBuzzer, frecDer, duracionBeep);   // Emite un tono de 1000 Hz durante DUR_BEEP ms
+    digitalWrite(pinBuzzer, 1);
+    delay(dtLargo);
+    //tone(pinBuzzer, frecDer, duracionBeep);   // Emite un tono de 1000 Hz durante DUR_BEEP ms
 
     motor.step(pasosPorVuelta);               // Gira el motor una vuelta completa en sentido horario (positivo)
   }                                              // Fin del for: repite hasta completar totalVueltas
@@ -80,8 +82,9 @@ void loop() {
     lcd.setCursor(0, 1);                         // Mueve el cursor a columna 0, fila 1
     lcd.print("izquierda: ");                     // Imprime la dirección y los dos puntos en fila 1
     lcd.print(v);                                // Imprime el número de vuelta actual
-
-    tone(pinBuzzer, frecIzq, duracionBeep); // Emite un tono de 500 Hz durante DUR_BEEP ms
+    digitalWrite(pinBuzzer, 1);
+    delay(dtLargo);
+    //tone(pinBuzzer, frecIzq, duracionBeep); // Emite un tono de 500 Hz durante DUR_BEEP ms
 
     motor.step(-pasosPorVuelta);              // Gira el motor una vuelta completa en sentido antihorario (negativo)
   }                                              // Fin del for: repite hasta completar totalVueltas
@@ -91,6 +94,6 @@ void loop() {
   lcd.setCursor(0, 0);                           // Posiciona el cursor en columna 0, fila 0
   lcd.print("Esperando...");                      // Muestra al usuario que el sistema está en pausa
   noTone(pinBuzzer);                            // Detiene cualquier tono residual en el buzzer
-  delay(dt);                            // Detiene la ejecución 1000 ms (1 segundo)
+  delay(dtLargo);                            // Detiene la ejecución 1000 ms (1 segundo)
 
 }
