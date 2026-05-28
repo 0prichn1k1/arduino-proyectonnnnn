@@ -95,7 +95,7 @@ void loop() {
   lcd.clear();                                   // Borra el LCD para mostrar el mensaje de pausa
   lcd.setCursor(0, 0);                           // Posiciona el cursor en columna 0, fila 0
   lcd.print("Esperando...");                      // Muestra al usuario que el sistema está en pausa
-  noTone(pinBuzzer);                            // Detiene cualquier tono residual en el buzzer
+  //noTone(pinBuzzer);                            // Detiene cualquier tono residual en el buzzer
   delay(dtLargo);                            // Detiene la ejecución 1000 ms (1 segundo)
 
 }
