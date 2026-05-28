@@ -1,0 +1,44 @@
+#include <Stepper.h>
+#include <LiquidCrystal.h>
+#include <ESP32Servo.h>
+Servo servoya;
+
+const int trigPin= 2;
+const int echoPin= 4;
+
+const int pinRS = 16;         // pin RS del LCD: en LOW recibe comando, en HIGH recibe dato
+const int pinEN = 17;         // pin EN del LCD: pulso de habilitación para escribir al display
+const int pinD4 = 5;         // pin de dato D4 del LCD (modo 4 bits usa sólo D4–D7)
+const int pinD5 = 18;         // pin de dato D5 del LCD
+const int pinD6 = 19;         // pin de dato D6 del LCD
+const int pinD7 = 21;         // pin de dato D7 del LCD
+
+const int pinIN1 = 13;       // Conectado a la entrada IN1 del driver
+const int pinIN2 = 12;       // Conectado a la entrada IN2 del driver
+const int pinIN3 = 14;       // Conectado a la entrada IN3 del driver
+const int pinIN4 = 27;       // Conectado a la entrada IN4 del driver
+
+const int pasosPorVuelta = 2048;  // Pasos para una vuelta completa del eje de (motor interno: 32 pasos * reducción 1:64 = 2048)
+const int velocidad          = 10;    // Velocidad del motor
+
+const int ledPinVerde =12;  //asigna el pin 12 para el led verde
+const int dt = 10;            //cada vez que hay un "delay dt" es para q el prcoesador del arduino descanse
+const int serial = 9600;  //estandar de frecuencia del monitor serial para el  muestreo
+int duracion;  //variable que se declara para  despues darle el valor del ultrasonido del sensor
+float distancia;  //variable que se declara para  despues guardar el resultado del calculo de distancia
+
+void setup() {
+
+  
+  servogy.attach(servoPin);  //le doy el pin del servo al arduino
+  Serial.begin(serial);  //le doy la frecuencial al monitor serial
+  pinMode(ledPinVerde, 1);      //ponemos los pines de los leds (rojo y verde) y el buzzer en salida
+  servogy.write(0);         //seteamos el servo en 0 grados
+
+}
+
+void loop() {
+
+
+
+}
