@@ -1,0 +1,41 @@
+#include <Servo.h>
+
+Servo miServo;
+
+const int pinServo = 11;
+const int ldr1 = A0;
+const int ldr2 = A1;
+
+int posicion = 90;
+const int tolerancia = 10;
+
+void setup() {
+  miServo.attach(pinServo);
+  miServo.write(posicion);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  int valorLDR1 = analogRead(ldr1);
+  int valorLDR2 = analogRead(ldr2);
+
+  if (valorLDR1 > valorLDR2 + tolerancia) {
+    posicion = posicion + 2;
+  }
+  else if (valorLDR2 > valorLDR1 + tolerancia) {
+    posicion = posicion - 2;
+  }
+
+  posicion = constrain(posicion, 0, 180);
+  miServo.write(posicion);
+
+  Serial.print("LDR1: ");
+  Serial.print(valorLDR1);
+  Serial.print(" | LDR2: ");
+  Serial.print(valorLDR2);
+  Serial.print(" | Servo: ");
+  Serial.println(posicion);
+
+  delay(50);
+}
